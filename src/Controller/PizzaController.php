@@ -3,11 +3,12 @@
 // src/Controller/LuckyController.php
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class PizzaController
+class PizzaController extends AbstractController
 {
     /**
      * @Route("/")
@@ -26,16 +27,21 @@ class PizzaController
         ];
 
 
-        return new Response(
-            '<html><body>Lucky pizza:' . $pizzas[array_rand($pizzas)] . '</body></html>'
-        );
+//        return new Response(
+//            '<html><body>Lucky pizza:' . $pizzas[array_rand($pizzas)] . '</body></html>'
+//        );
+        return $this->render('pizza/home.html.twig', [
+            'pizzas' => $pizzas
+        ]);
     }
     //categories page
     /**
      * @Route("/categories/{slug}")
      */
     public function categories($slug) {
-        return new Response(sprintf('Future page for categories "%s"',ucwords(str_replace('-', ' ',$slug))));
+        return new Response(sprintf(
+            'Future page for categories "%s"',ucwords(str_replace('-', ' ',$slug))
+        ));
 
     }
 }

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Pizza La Mama</h1>
+    <ul>
+        {% for value in pizzas %}
+            <li>{{ value }}</li>
+        {% endfor %}
+    </ul>
+{#
+    <div class="card">
+        <div class="card-body text-center">
+            <img class="center-block" alt="Product image" src="">
+            <div class="card-title mb-3"></div>
+        </div>
+    </div>
+#}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+header {
+    text-align: center;
+    background: #d22727;
+}
+
+.header-text {
+    padding: 1rem;
+}
+
+.body {
+    margin-bottom: 2rem;
+}
+
+.footer {
+    background: black;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding-bottom: 1.5rem;
+}
+
+.category-img {
+    width: 24rem;
+    height: 200px;
+}
+
+.card-body {
+    text-align: left;
+}

@@ -1,19 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Pizza homepage{% endblock %}
+
 {% block body %}
-<h1>Pizza La Mama</h1>
-    <ul>
-        {% for value in pizzas %}
-            <li>{{ value }}</li>
-        {% endfor %}
-    </ul>
-{#
-    <div class="card">
-        <div class="card-body text-center">
-            <img class="center-block" alt="Product image" src="">
-            <div class="card-title mb-3"></div>
+    <main class="body">
+        <div class="container">
+            <div class="row">
+                <h2>categorieën ({{ categories|length }})</h2>
+                {% for category in categories %}
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="center-block card-img img-fluid category-img" alt="vlees pizza" src="{{ category.image }}">
+                            <h5 class="card-title mb-3">{{ category.name }}</h5>
+                            <p class="card-text">{{ category.description }}</p>
+                            <button class="btn-danger">naar de {{ category.name }}</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-#}
+    </main>
 
 {% endblock %}

@@ -11,10 +11,10 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <img class="center-block card-img img-fluid category-img" alt="vlees pizza" src="{{ category.image }}">
+                            <img class="center-block card-img img-fluid category-img" alt="{{ category.name }} pizza" src="{{ category.image }}">
                             <h5 class="card-title mb-3">{{ category.name }}</h5>
                             <p class="card-text">{{ category.description }}</p>
-                            <button class="btn-danger">naar de {{ category.name }}</button>
+                            <button class="btn-danger"><a href="pizza/{{ category.id }}">pizza</a></button>
                         </div>
                     </div>
                 </div>

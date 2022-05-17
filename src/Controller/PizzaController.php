@@ -103,7 +103,6 @@ class PizzaController extends AbstractController
      */
 
     public function contact(): Response {
-
         return $this->render('pizza/contact.html.twig', [
 
         ]);

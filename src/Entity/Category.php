@@ -18,18 +18,18 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private $description;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $text;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
-    private $products;
+    #[ORM\OneToMany(mappedBy: 'category_id', targetEntity: Pizza::class)]
+    private $pizza;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->pizza = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,49 +54,49 @@ class Category
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getText(): ?string
     {
-        return $this->description;
+        return $this->text;
     }
 
-    public function setDescription(?string $description): self
+    public function setText(string $text): self
     {
-        $this->description = $description;
+        $this->text = $text;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Products>
+     * @return Collection<int, Pizza>
      */
-    public function getProducts(): Collection
+    public function getPizza(): Collection
     {
-        return $this->products;
+        return $this->pizza;
     }
 
-    public function addProduct(Products $product): self
+    public function addPizza(Pizza $pizza): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->setCategory($this);
+        if (!$this->pizza->contains($pizza)) {
+            $this->pizza[] = $pizza;
+            $pizza->setCategoryId($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Products $product): self
+    public function removePizza(Pizza $pizza): self
     {
-        if ($this->products->removeElement($product)) {
+        if ($this->pizza->removeElement($pizza)) {
             // set the owning side to null (unless already changed)
-            if ($product->getCategory() === $this) {
-                $product->setCategory(null);
+            if ($pizza->getCategoryId() === $this) {
+                $pizza->setCategoryId(null);
             }
         }
 

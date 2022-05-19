@@ -1,6 +1,5 @@
 <?php
 
-// src/Controller/LuckyController.php
 namespace App\Controller;
 
 use App\Entity\Category;
@@ -8,15 +7,15 @@ use App\Entity\Products;
 use App\Entity\Order;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
-use App\Repository\ProductsRepository;
+use App\Repository\PizzaRepository;
 use Doctrine\ORM\Query\Printer;
+use http\Client\Request;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 
 
 class PizzaController extends AbstractController
@@ -35,38 +34,9 @@ class PizzaController extends AbstractController
     }
 
     /**
-     * @Route("/aa")
-     */
-
-    public function randomPizza(): Response
-    {
-
-        $pizzas = [
-            "PIZZA PEPPERONI DELUXE",
-            "PIZZA PEPPERONI PARTY",
-            "PIZZA VEGGI CHICKEN SUPREME",
-            "PIZZA FRESH 'N TASTY",
-            "PIZZA VEGERONI",
-            "PIZZA MARGARITHA",
-            "PIZZA HAM",
-            "PIZZA FUNGHI"
-        ];
-        global $categories;
-
-//        return new Response(
-//            '<html><body>Lucky pizza:' . $pizzas[array_rand($pizzas)] . '</body></html>'
-//        );
-        return $this->render('pizza/home.html.twig', [
-            'categories' => $categories
-        ]);
-    }
-
-
-
-    /**
      * @Route("/pizza/{slug}", name="products", methods={"GET","HEAD"})
      */
-    public function categories(int $slug ,ProductsRepository $em) {
+    public function categories(int $slug ,PizzaRepository $em) {
 
         $products = $em->findBy(array('category' => $slug));
 

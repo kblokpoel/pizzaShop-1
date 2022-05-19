@@ -34,13 +34,15 @@ class Order
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: size::class)]
-    private $size_id;
 
-    public function __construct()
-    {
-        $this->size_id = new ArrayCollection();
-    }
+
+    #[ORM\ManyToOne(targetEntity: Products::class, inversedBy: 'orders')]
+    private $product;
+
+    #[ORM\ManyToOne(targetEntity: Size::class, inversedBy: 'orders')]
+    private $size;
+
+
 
     public function getId(): ?int
     {
@@ -119,32 +121,27 @@ class Order
         return $this;
     }
 
-    /**
-     * @return Collection<int, size>
-     */
-    public function getSizeId(): Collection
+
+    public function getProduct(): ?Products
     {
-        return $this->size_id;
+        return $this->product;
     }
 
-    public function addSizeId(size $sizeId): self
+    public function setProduct(?Products $product): self
     {
-        if (!$this->size_id->contains($sizeId)) {
-            $this->size_id[] = $sizeId;
-            $sizeId->setOrders($this);
-        }
+        $this->product = $product;
 
         return $this;
     }
 
-    public function removeSizeId(size $sizeId): self
+    public function getSize(): ?Size
     {
-        if ($this->size_id->removeElement($sizeId)) {
-            // set the owning side to null (unless already changed)
-            if ($sizeId->getOrders() === $this) {
-                $sizeId->setOrders(null);
-            }
-        }
+        return $this->size;
+    }
+
+    public function setSize(?Size $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }

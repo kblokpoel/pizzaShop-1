@@ -6,9 +6,11 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Products;
 use App\Entity\Order;
+use App\Entity\Size;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
 use App\Repository\ProductsRepository;
+use App\Repository\SizeRepository;
 use Doctrine\ORM\Query\Printer;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -81,6 +83,7 @@ class PizzaController extends AbstractController
     public function order(Products $products, ManagerRegistry $doctrine, Request $request) {
         $product = $products->getName();
         $order = new Order();
+        $order->setProduct($products);
         $form = $this->createForm(OrderType::class, $order);
         $order->setStatus('pending');
         $entityManager = $doctrine->getManager();
@@ -95,6 +98,17 @@ class PizzaController extends AbstractController
         return $this->renderForm('pizza/order.html.twig',[
             'form' => $form,
             'pizza' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/orders")
+     */
+    public function orders(OrderRepository $orders, SizeRepository $sizes, ProductsRepository $products): Response {
+        $order = $orders->findAll();
+
+        return $this->render('pizza/orders.html.twig', [
+            'order' => $order,
         ]);
     }
 

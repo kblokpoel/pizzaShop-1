@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p>{{ product.name }}</p>
-                                <img class="card-img img-fluid" src="img/{{ product.name }}" alt="pizza {{ product.name }}">
+                                <img class="card-img img-fluid" src="{{ product.image }}" alt="pizza {{ product.name }}">
                                 <p class="card-text">Bekijk de lekkerste {# {{  category.name  }} #}pizza's.</p>
                                 <a href="{{ path('app_order', { id: product.id }) }}" class="btn btn-danger">Bestel {{ product.name }} pizza</a>
                             </div>

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for orders in order %}
+
+        <p>klant: {{ orders.fname }} {{ orders.lname }}</p>
+{#        <p>order: {{ product }}</p>#}
+        <p>bestelling: {{ orders.product.name }}, {{ orders.size.name }}</p>
+    {% endfor %}
+
+{% endblock %}

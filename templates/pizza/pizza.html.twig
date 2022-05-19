@@ -11,8 +11,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <p>{{ product.name }}</p>
+<<<<<<< HEAD
                                 <img class="card-img img-fluid" src="img/{{ product.name }}" alt="pizza {{ product.name }}">
                                 <p class="card-text">Bekijk de {# {{  category.name  }} #}pizza's.</p>
+=======
+                                <img class="card-img img-fluid" src="{{ product.image }}" alt="pizza {{ product.name }}">
+                                <p class="card-text">Bekijk de lekkerste {# {{  category.name  }} #}pizza's.</p>
+>>>>>>> 52f8591b6d29a436dbd5b3eefca02d785e2cfa71
                                 <a href="{{ path('app_order', { id: product.id }) }}" class="btn btn-danger">Bestel {{ product.name }} pizza</a>
                             </div>
                         </div>

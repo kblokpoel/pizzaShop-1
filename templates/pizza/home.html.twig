@@ -3,6 +3,8 @@
 {% block title %}Pizza homepage{% endblock %}
 
 {% block body %}
+    <br>
+    <br>
     <main class="body">
         <div class="container">
             <div class="row">
@@ -13,8 +15,8 @@
                         <div class="card-body">
                             <img class="center-block card-img img-fluid category-img" alt="{{ category.name }} pizza" src="{{ category.image }}" style="height: 400px; width: auto;">
                             <h5 class="card-title mb-3">{{ category.name }}</h5>
-                            <p class="card-text">{{ category.text }}</p>
-                            <button class="btn-danger"><a href="pizza/{{ category.id }}">Koop hier</a></button>
+                            <p class="card-text">{{ category.description }}</p>
+                            <button class="btn-danger"><a href="{{ path("app_pizza" , {id:category.id}) }}">Koop hier</a></button>
                         </div>
                     </div>
                 </div>

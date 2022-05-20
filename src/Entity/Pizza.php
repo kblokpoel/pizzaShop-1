@@ -5,27 +5,41 @@ namespace App\Entity;
 use App\Repository\PizzaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PizzaRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=PizzaRepository::class)
+ */
 class Pizza
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $image;
 
-    #[ORM\Column(type: 'text')]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $description;
 
-    #[ORM\Column(type: 'decimal', precision: 5, scale: 2, nullable: true)]
+    /**
+     * @ORM\Column(type="decimal", precision=5, scale=2)
+     */
     private $price;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'pizza')]
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="pizza")
+     */
     private $category_id;
 
     public function getId(): ?int
@@ -74,7 +88,7 @@ class Pizza
         return $this->price;
     }
 
-    public function setPrice(?string $price): self
+    public function setPrice(string $price): self
     {
         $this->price = $price;
 

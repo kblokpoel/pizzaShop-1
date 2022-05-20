@@ -8,12 +8,10 @@ use App\Entity\Order;
 use App\Entity\Size;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
-<<<<<<< HEAD
+
 use App\Repository\PizzaRepository;
-=======
 use App\Repository\ProductsRepository;
 use App\Repository\SizeRepository;
->>>>>>> 52f8591b6d29a436dbd5b3eefca02d785e2cfa71
 use Doctrine\ORM\Query\Printer;
 use http\Client\Request;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
@@ -40,14 +38,14 @@ class PizzaController extends AbstractController
     }
 
     /**
-     * @Route("/pizza/{slug}", name="products", methods={"GET","HEAD"})
+     * @Route("/pizza/{id}", name="app_pizza", methods={"GET","HEAD"})
      */
-    public function categories(int $slug ,PizzaRepository $em) {
+    public function categories(Category $category ,PizzaRepository $em) {
 
-        $products = $em->findBy(array('category' => $slug));
+        $pizzas = $em->findBy(["category_id" => $category]);
 
         return $this->render('pizza/pizza.html.twig', [
-            'products' => $products
+            'pizzas' => $pizzas
         ]);
 
     }

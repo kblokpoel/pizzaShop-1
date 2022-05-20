@@ -35,7 +35,7 @@ class Category
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Pizza::class, mappedBy="category_id")
+     * @ORM\OneToMany(targetEntity=Pizza::class, mappedBy="category")
      */
     private $pizza;
 
@@ -97,7 +97,7 @@ class Category
     {
         if (!$this->pizza->contains($pizza)) {
             $this->pizza[] = $pizza;
-            $pizza->setCategoryId($this);
+            $pizza->setCategory($this);
         }
 
         return $this;
@@ -107,8 +107,8 @@ class Category
     {
         if ($this->pizza->removeElement($pizza)) {
             // set the owning side to null (unless already changed)
-            if ($pizza->getCategoryId() === $this) {
-                $pizza->setCategoryId(null);
+            if ($pizza->getCategory() === $this) {
+                $pizza->setCategory(null);
             }
         }
 

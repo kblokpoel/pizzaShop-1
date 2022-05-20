@@ -48,6 +48,16 @@ class Order
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Pizza::class, inversedBy="orders")
+     */
+    private $pizza;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Size::class, inversedBy="orders")
+     */
+    private $size;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +131,30 @@ class Order
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPizza(): ?Pizza
+    {
+        return $this->pizza;
+    }
+
+    public function setPizza(?Pizza $pizza): self
+    {
+        $this->pizza = $pizza;
+
+        return $this;
+    }
+
+    public function getSize(): ?Size
+    {
+        return $this->size;
+    }
+
+    public function setSize(?Size $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }
